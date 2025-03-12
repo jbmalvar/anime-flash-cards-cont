@@ -1,26 +1,26 @@
-# Web Development Project 2 - *Name of App Here*
+# Web Development Project 3 - *Anime Flash Cards*
 
-Submitted by: **Your Name Here**
+Submitted by: **James Joshua Malvar**
 
-This web app: **insert description**
+This web app: **anime flash cards**
 
-Time spent: **X** hours spent in total
+Time spent: **2** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [X] **The title of the card set and some information about it, such as a short description and the total number of cards are displayed**
-- [X] **A single card at a time is displayed, only showing one of the components of the information pair**
-- [X] **A list of card pairs is created**
-- [X] **Clicking on the card shows the corresponding component of the information pair**
-- [X] **Clicking the next button displays a random new card**
+- [X] **The user can enter their guess in a box before seeing the flipside of the card**
+- [X] **Clicking on a submit button shows visual feedback about whether the answer was correct or incorrect**
+- [X] **A back button is displayed on the card and can be used to return to the previous card in a set sequence**
+- [X] **A next button is displayed on the card and can be used to navigate to the next card in a set sequence**
 
 The following **optional** features are implemented:
 
-- [X] Cards contains images in addition to or in place of text
-- [X] Cards have different visual styles such as color based on their category
-  - [X] *Easy, Medium, Hard*
+- [X] A shuffle button is used to randomize the order of the cards
+- [X] A user's answer may be counted as correct even when it is slightly different from the target answer
+- [X] A counter displays the user's current and longest streak of correct responses
+- [X] A user can mark a card that they have mastered and have it removed from the pool of answers as well as added to a list of mastered cards
 
 The following **additional** features are implemented:
 
@@ -28,29 +28,26 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented required features:
+Here's a walkthrough of implemented user stories:
 
-![Alt Text](src/assets/HW2-Gif.gif)
+<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
-
-[ScreenToGif](https://www.screentogif.com/) for Windows
-
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
 [peek](https://github.com/phw/peek) for Linux. -->
+Screen Record to Canva
 
 ## Notes
 
 Describe any challenges encountered while building the app.
-
-The Flip part was a little difficult. Ended up having to use some ai for some help on it. Other than then went fine.
+Had to use Ai for some parts specifically when it came to the similar. Had no clue how to approach that.
 
 ## License
 
-    Copyright [2025] [James Joshua Malvar]
+    Copyright [2025] [James Malvar]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
