@@ -30,7 +30,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![HW3](https://github.com/user-attachments/assets/aa977e8e-a76d-4e1f-a663-464c71c3188a)
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
@@ -39,6 +39,7 @@ GIF created with ...
 [ScreenToGif](https://www.screentogif.com/) for Windows
 [peek](https://github.com/phw/peek) for Linux. -->
 Screen Record to Canva
+
 
 ## Notes
 
