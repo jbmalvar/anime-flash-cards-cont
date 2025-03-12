@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Card from './components/Card'
 import './App.css';
 import maomaoImage from './assets/Maomao-Design-Anime.webp'
+import levenshtein from 'js-levenshtein';
 
 const App = () => {
   const [characters, setCharacters] = useState([
@@ -56,13 +57,68 @@ const App = () => {
       difficulty: 'hard'
     }
     ]);
+  const[Mastered, setMasteredCharacters] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [inputValue, setInputValue] = useState('');
+  const [correctStreak, setCorrectStreak] = useState(0);
+  const [longestStreak, setLongestStreak] = useState(0);
+  const [labelColor, setLabelColor] = useState('');
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const nextCard = () => {
+    if (currentIndex === characters.length - 1) {
+      setCurrentIndex(0);
+    } else {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
 
-    const nextCard = () => {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      setCurrentIndex(randomIndex);
-    };
+  const prevCard = () => {
+    if (currentIndex === 0) {
+      setCurrentIndex(characters.length - 1);
+    } else {
+      setCurrentIndex(currentIndex - 1);
+    }
+  }
+
+  const shuffleCards = () => {
+    characters.sort(() => Math.random() - 0.5);
+    setCurrentIndex(0);
+  }
+
+  const MasteredCard = () => {
+    const mastered = characters[currentIndex];
+    setMasteredCharacters([...Mastered, mastered]);
+    const newCharacters = characters.filter((_, index) => index !== currentIndex);
+    setCharacters(newCharacters);
+    if (currentIndex >= newCharacters.length) {
+      setCurrentIndex(0);
+    }
+  }
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  }
+
+  const handleSubmit = () => {
+    const userInput = inputValue.trim().toLowerCase();
+    const correctAnswer = characters[currentIndex].name.toLowerCase();
+    const distance = levenshtein(userInput, correctAnswer);
+    const threshold = 3;
+
+    if (distance <= threshold) {
+      setCorrectStreak(correctStreak + 1);
+      if (correctStreak + 1 > longestStreak) {
+        setLongestStreak(correctStreak + 1);
+      }
+      setLabelColor('green');
+    } else {
+      setCorrectStreak(0);
+      setLabelColor('red');
+    }
+    setInputValue('');
+    nextCard();
+    setTimeout(() => setLabelColor(''), 500);
+  };
 
   return (
     <div className="App">
@@ -73,12 +129,39 @@ const App = () => {
         <div className = "difficultyColor">
           <p>Difficulties: Green = Easy, Yellow = Medium, Red = Hard</p>
         </div>
+        <div className = "counter">
+          <p>Correct Streak: {correctStreak} Longest Streak: {longestStreak}</p>
+        </div>
       </div>
-      <div className={`CardContainer ${characters[currentIndex].difficulty}`}>
-        <Card character={characters[currentIndex]} difficulty={characters[currentIndex].difficulty} />
+      {characters.length > 0 ? (
+        <div>
+          <div className={`CardContainer ${characters[currentIndex].difficulty}`}>
+            <Card character={characters[currentIndex]} difficulty={characters[currentIndex].difficulty} />
+          </div>
+          <div>
+            <button className='button' onClick={prevCard}>{"<-"}</button>
+            <button className='button' onClick={nextCard}>{"->"}</button>
+            <button className='button' onClick={shuffleCards}>Shuffle</button>
+            <button className='button' onClick={MasteredCard}>Add to Mastered</button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <h2>All cards mastered!</h2>
+        </div>
+      )}
+      <div>
+        <label style={{ color: labelColor }}>Enter your answer: </label>
+        <input value={inputValue} onChange={handleInputChange}></input>
+        <button onClick={handleSubmit}>Submit</button>
       </div>
       <div>
-        <button className='button' onClick={nextCard}>{"->"}</button>
+        <h2>Mastered Cards</h2>
+        <div className="MasteredCardContainer">
+          {Mastered.map((character, index) => (
+            <Card key={index} character={character} difficulty={character.difficulty} />
+          ))}
+        </div>
       </div>
     </div>
   )

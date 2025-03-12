@@ -45,3 +45,10 @@ body, html {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
   margin-bottom: 20px;
 }
+
+.MasteredCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
