@@ -1,15 +1,9 @@
 import './Card.css';
 import { useState } from 'react';
 
-const Card = ({character, difficulty}) => {
-  const [flipped, setFlipped] = useState(false);
-
-  const handleFlip = () => {
-    setFlipped(!flipped);
-  };
-
+const Card = ({character, difficulty, flipped, onFlip}) => {
   return (
-    <div className={`FlashCard ${flipped ? 'flipped' : ''} ${difficulty}`} onClick={handleFlip}>
+    <div className={`FlashCard ${flipped ? 'flipped' : ''} ${difficulty}`} onClick={onFlip}>
       <div className="FlashCardInner">
         <div className="FlashCardFront">
           <img src={character.image} alt={character.name} />

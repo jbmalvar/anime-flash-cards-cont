@@ -63,6 +63,7 @@ const App = () => {
   const [correctStreak, setCorrectStreak] = useState(0);
   const [longestStreak, setLongestStreak] = useState(0);
   const [labelColor, setLabelColor] = useState('');
+  const [flipped, setFlipped] = useState(false);
 
   const nextCard = () => {
     if (currentIndex === characters.length - 1) {
@@ -120,6 +121,10 @@ const App = () => {
     setTimeout(() => setLabelColor(''), 500);
   };
 
+  const handleFlip = () => {
+    setFlipped(!flipped);
+  };
+
   return (
     <div className="App">
       <div className="header">
@@ -136,7 +141,12 @@ const App = () => {
       {characters.length > 0 ? (
         <div>
           <div className={`CardContainer ${characters[currentIndex].difficulty}`}>
-            <Card character={characters[currentIndex]} difficulty={characters[currentIndex].difficulty} />
+            <Card 
+              character={characters[currentIndex]} 
+              difficulty={characters[currentIndex].difficulty} 
+              flipped={flipped} 
+              onFlip={handleFlip} 
+            />
           </div>
           <div>
             <button className='button' onClick={prevCard}>{"<-"}</button>
@@ -150,11 +160,13 @@ const App = () => {
           <h2>All cards mastered!</h2>
         </div>
       )}
-      <div>
-        <label style={{ color: labelColor }}>Enter your answer: </label>
-        <input value={inputValue} onChange={handleInputChange}></input>
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
+      {!flipped && (
+        <div>
+          <label style={{ color: labelColor }}>Enter your answer: </label>
+          <input value={inputValue} onChange={handleInputChange}></input>
+          <button onClick={handleSubmit}>Submit</button>
+        </div>
+      )}
       <div>
         <h2>Mastered Cards</h2>
         <div className="MasteredCardContainer">
